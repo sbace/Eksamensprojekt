@@ -34,7 +34,7 @@ namespace WpfApplication1
             psi.CreateNoWindow = true;
 
             var proc = Process.Start(psi);
-
+            //jhvjvjgvjgvhg
             string s = proc.StandardOutput.ReadToEnd();
 
             textBox.Text = s;
