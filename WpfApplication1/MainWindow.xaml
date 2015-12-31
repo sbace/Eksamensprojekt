@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="StefScan" Height="421.021" Width="473.939">
+        Title="StefScan" Height="634.305" Width="473.939">
     <Grid>
         <Button x:Name="Ipconfig" Content="IPConfig" HorizontalAlignment="Left" Margin="25,21,0,0" VerticalAlignment="Top" Width="75" Click="Ipconfig_Click"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="278" Margin="25,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="345"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="500" Margin="25,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="345"/>
+        <Button x:Name="ping" Content="Ping" HorizontalAlignment="Left" Height="19" Margin="126,21,0,0" VerticalAlignment="Top" Width="69" Click="ping_Click"/>
+        <TextBox x:Name="ipa" HorizontalAlignment="Left" Height="19" Margin="205,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
 
     </Grid>
 </Window>
