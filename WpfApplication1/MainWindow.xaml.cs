@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
+using System.Net;
+
 
 namespace WpfApplication1
 {
@@ -38,6 +40,7 @@ namespace WpfApplication1
             //jhvjvjgvjgvhg
             string s = proc.StandardOutput.ReadToEnd();
 
+
             textBox.Text = s;
 
         }
@@ -57,20 +60,39 @@ namespace WpfApplication1
                        + " Response delay = " + r.RoundtripTime.ToString() + " ms" + "\n";
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                textBox.Text = "That is not a valid address!!!";
             }
             
         }
-/*
-        private void textBox1_Validated(object sender, EventArgs e)
+
+        private void WanIp_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(ipa.Text) || ipa.Text == "")
+            String url = "http://bot.whatismyipaddress.com/";
+            String result = null;
+
+            try
             {
-                MessageBox.Show("Please use valid IP or web address!!");
+                WebClient client = new WebClient();
+                result = client.DownloadString(url);
+                textBox.Text = "My WAN IP is " + result;
             }
-        }*/
+            catch (Exception ex) { textBox.Text="127.0.0.1"; }
+        }
+    }
+
+    
+
+
+        /*
+       private void textBox1_Validated(object sender, EventArgs e)
+       {
+           if (string.IsNullOrEmpty(ipa.Text) || ipa.Text == "")
+           {
+               MessageBox.Show("Please use valid IP or web address!!");
+           }
+       }*/
         /*private void ipa_Validated(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(ipa.Text) || ipa.Text == "")
@@ -84,4 +106,4 @@ namespace WpfApplication1
 
         }*/
     }
-}
+

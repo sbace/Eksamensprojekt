@@ -8,9 +8,10 @@
         Title="StefScan" Height="634.305" Width="473.939">
     <Grid>
         <Button x:Name="Ipconfig" Content="IPConfig" HorizontalAlignment="Left" Margin="25,21,0,0" VerticalAlignment="Top" Width="75" Click="Ipconfig_Click"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="500" Margin="25,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="345"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="500" Margin="25,95,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="345"/>
         <Button x:Name="ping" Content="Ping" HorizontalAlignment="Left" Height="19" Margin="126,21,0,0" VerticalAlignment="Top" Width="69" Click="ping_Click"/>
         <TextBox x:Name="ipa" HorizontalAlignment="Left" Height="19" Margin="205,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
+        <Button x:Name="WanIp" Content="WanIP" HorizontalAlignment="Left" Height="20" Margin="25,54,0,0" VerticalAlignment="Top" Width="75" Click="WanIp_Click" />
 
     </Grid>
 </Window>
