@@ -32,7 +32,9 @@ namespace WpfApplication1
         private void Ipconfig_Click(object sender, RoutedEventArgs e)
         {
             ProcessStartInfo psi = new ProcessStartInfo("ipconfig");
+            
             psi.UseShellExecute = false;
+            psi.Arguments = "/all";
             psi.RedirectStandardOutput = true;
             psi.CreateNoWindow = true;
 
@@ -99,6 +101,7 @@ namespace WpfApplication1
         {
             ProcessStartInfo psi = new ProcessStartInfo("getmac");
             psi.UseShellExecute = false;
+
             psi.RedirectStandardOutput = true;
             psi.CreateNoWindow = true;
 
