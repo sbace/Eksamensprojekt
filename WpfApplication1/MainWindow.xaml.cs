@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Net;
-
+using System.Text.RegularExpressions;
 
 namespace WpfApplication1
 {
@@ -41,7 +41,19 @@ namespace WpfApplication1
             string s = proc.StandardOutput.ReadToEnd();
 
 
+
+            /*
+            String input = s;
+            Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
+            string[] result = ip.Split(input);
+
+            foreach (string bla in result)
+            {
+                textBox.Text = bla;
+            }
+            */
             textBox.Text = s;
+            
 
         }
 
@@ -59,10 +71,12 @@ namespace WpfApplication1
                     textBox.Text = "Ping to " + s.ToString() +/* "[" + r.Address.ToString() + "]" +*/ " Successful"
                        + " Response delay = " + r.RoundtripTime.ToString() + " ms" + "\n";
                 }
+
+           
             }
             catch (Exception ex)
             {
-                textBox.Text = "That is not a valid address!!!";
+                textBox.Text="That is not a valid address!!!";
             }
             
         }
@@ -79,6 +93,21 @@ namespace WpfApplication1
                 textBox.Text = "My WAN IP is " + result;
             }
             catch (Exception ex) { textBox.Text="127.0.0.1"; }
+        }
+
+        private void mac_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo("getmac");
+            psi.UseShellExecute = false;
+            psi.RedirectStandardOutput = true;
+            psi.CreateNoWindow = true;
+
+            var proc = Process.Start(psi);
+            string s = proc.StandardOutput.ReadToEnd();
+
+            textBox.Text = s;
+
+
         }
     }
 
