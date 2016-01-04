@@ -34,7 +34,7 @@ namespace WpfApplication1
             ProcessStartInfo psi = new ProcessStartInfo("ipconfig");
             
             psi.UseShellExecute = false;
-            psi.Arguments = "/all";
+            //psi.Arguments = "/all";
             psi.RedirectStandardOutput = true;
             psi.CreateNoWindow = true;
 
@@ -44,18 +44,33 @@ namespace WpfApplication1
 
 
 
-            /*
+
             String input = s;
             Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
-            string[] result = ip.Split(input);
+            MatchCollection result = ip.Matches(input);
 
-            foreach (string bla in result)
+            if (result.Count == 3)
             {
-                textBox.Text = bla;
+                textBox.Text += "ip" + result[0] + "\n";
+                textBox.Text += "sub" + result[1] + "\n";
+                textBox.Text += "gateway" + result[2] + "\n";
             }
-            */
-            textBox.Text = s;
-            
+            else
+            {
+                foreach (var bla in result)
+                {
+                    textBox.Text += bla + "\n";
+                }
+            }
+
+
+            //foreach (var bla in result)
+            //{
+            //    textBox.Text += bla + "\n";
+            //}
+
+            //textBox.Text = s;
+
 
         }
 
@@ -99,19 +114,10 @@ namespace WpfApplication1
 
         private void mac_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo("getmac");
-            psi.UseShellExecute = false;
-
-            psi.RedirectStandardOutput = true;
-            psi.CreateNoWindow = true;
-
-            var proc = Process.Start(psi);
-            string s = proc.StandardOutput.ReadToEnd();
-
-            textBox.Text = s;
-
-
-        }
+            var cmd = new CommandExecutor();
+            string mac = cmd.ExecuteCommand("getmac");
+            textBox.Text = mac;
+        }        
     }
 
     
