@@ -31,30 +31,32 @@ namespace WpfApplication1
 
         private void Ipconfig_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo("ipconfig");
+            ProcessStartInfo psi = new ProcessStartInfo("tracert");
             
             psi.UseShellExecute = false;
-            psi.Arguments = "/all";
+            psi.Arguments = "google.com";
             psi.RedirectStandardOutput = true;
             psi.CreateNoWindow = true;
 
             var proc = Process.Start(psi);
-            //jhvjvjgvjgvhg
+            
             string s = proc.StandardOutput.ReadToEnd();
-
-
 
             /*
             String input = s;
             Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
-            string[] result = ip.Split(input);
+            //string[] result = ip.Split(input);
+            MatchCollection result = ip.Matches(input);
 
-            foreach (string bla in result)
+            if (result.Count == 3)
             {
-                textBox.Text = bla;
+                textBox.Text += "IP adresse is " + result[0] + "\n";
+                textBox.Text += "Subnet adresse is " + result[1] + "\n";
+                textBox.Text += "Gateway adresse is " + result[2] + "\n";
+
             }
             */
-            textBox.Text = s;
+                        textBox.Text = s;
             
 
         }
@@ -65,13 +67,20 @@ namespace WpfApplication1
             PingReply r;
             string s;
             s = ipa.Text;
-            r = p.Send(s);
+            
+            //Min try catch virker ikke, dvs programmet crasher ved invalid ping
+
             try
             {
+                r = p.Send(s);
                 if (r.Status == IPStatus.Success)
                 {
-                    textBox.Text = "Ping to " + s.ToString() +/* "[" + r.Address.ToString() + "]" +*/ " Successful"
+                    textBox.Text = "Ping to " + s.ToString() + " Successful"
                        + " Response delay = " + r.RoundtripTime.ToString() + " ms" + "\n";
+                }
+                else
+                {
+                    textBox.Text = "No ping";
                 }
 
            
@@ -81,10 +90,12 @@ namespace WpfApplication1
                 textBox.Text="That is not a valid address!!!";
             }
             
+            
         }
 
         private void WanIp_Click(object sender, RoutedEventArgs e)
         {
+            //Virker fint
             String url = "http://bot.whatismyipaddress.com/";
             String result = null;
 
@@ -99,16 +110,10 @@ namespace WpfApplication1
 
         private void mac_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo("getmac");
-            psi.UseShellExecute = false;
-
-            psi.RedirectStandardOutput = true;
-            psi.CreateNoWindow = true;
-
-            var proc = Process.Start(psi);
-            string s = proc.StandardOutput.ReadToEnd();
-
-            textBox.Text = s;
+           
+            var cmd = new CMDexe();
+            string mac = cmd.ExecuteCommand("getmac");
+            textBox.Text = mac;
 
 
         }
