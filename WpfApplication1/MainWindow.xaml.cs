@@ -31,19 +31,11 @@ namespace WpfApplication1
 
         private void Ipconfig_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo("tracert");
-            
-            psi.UseShellExecute = false;
-            psi.Arguments = "google.com";
-            psi.RedirectStandardOutput = true;
-            psi.CreateNoWindow = true;
+            var cmd = new CMDexe();
+            string ipc = cmd.ExecuteCommand("ipconfig");
+            //textBox.Text = mac;
 
-            var proc = Process.Start(psi);
-            
-            string s = proc.StandardOutput.ReadToEnd();
-
-            /*
-            String input = s;
+            String input = ipc;
             Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
             //string[] result = ip.Split(input);
             MatchCollection result = ip.Matches(input);
@@ -55,8 +47,8 @@ namespace WpfApplication1
                 textBox.Text += "Gateway adresse is " + result[2] + "\n";
 
             }
-            */
-                        textBox.Text = s;
+            
+            //            textBox.Text = s;
             
 
         }

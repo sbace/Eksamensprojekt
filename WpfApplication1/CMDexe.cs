@@ -11,7 +11,7 @@ namespace WpfApplication1
     {
         public string ExecuteCommand (string command)
         {
-            ProcessStartInfo psi = new ProcessStartInfo("getmac");
+            ProcessStartInfo psi = new ProcessStartInfo(command);
             psi.UseShellExecute = false;
 
             psi.RedirectStandardOutput = true;
