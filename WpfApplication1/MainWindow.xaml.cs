@@ -37,7 +37,6 @@ namespace WpfApplication1
 
             String input = ipc;
             Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
-            //string[] result = ip.Split(input);
             MatchCollection result = ip.Matches(input);
 
             if (result.Count == 3)
@@ -46,6 +45,10 @@ namespace WpfApplication1
                 textBox.Text += "Subnet adresse is " + result[1] + "\n";
                 textBox.Text += "Gateway adresse is " + result[2] + "\n";
 
+            }
+            else
+            {
+                textBox.Text = ipc;
             }
             
             //            textBox.Text = s;
@@ -59,8 +62,8 @@ namespace WpfApplication1
             PingReply r;
             string s;
             s = ipa.Text;
+
             
-            //Min try catch virker ikke, dvs programmet crasher ved invalid ping
 
             try
             {
@@ -111,28 +114,5 @@ namespace WpfApplication1
         }
     }
 
-    
-
-
-        /*
-       private void textBox1_Validated(object sender, EventArgs e)
-       {
-           if (string.IsNullOrEmpty(ipa.Text) || ipa.Text == "")
-           {
-               MessageBox.Show("Please use valid IP or web address!!");
-           }
-       }*/
-        /*private void ipa_Validated(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ipa.Text) || ipa.Text == "")
-            {
-                MessageBox.Show("Skriv lige en valid adresse!!");
-            }
-        }
-        */
-        /*private void richTextBox_TextChanged(object sender, TextChangedEventArgs e)
-       
-
-        }*/
     }
 
