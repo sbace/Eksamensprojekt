@@ -58,33 +58,12 @@ namespace WpfApplication1
 
         private void ping_Click(object sender, RoutedEventArgs e)
         {
-            Ping p = new Ping();
-            PingReply r;
             string s;
             s = ipa.Text;
 
-            
-
-            try
-            {
-                r = p.Send(s);
-                if (r.Status == IPStatus.Success)
-                {
-                    textBox.Text = "Ping to " + s.ToString() + " Successful"
-                       + " Response delay = " + r.RoundtripTime.ToString() + " ms" + "\n";
-                }
-                else
-                {
-                    textBox.Text = "No ping";
-                }
-
-           
-            }
-            catch (Exception ex)
-            {
-                textBox.Text="That is not a valid address!!!";
-            }
-            
+            var pfind = new Pingfinder();
+            string pfound = pfind.ExecuteCommand(s);
+            textBox.Text = pfound;
             
         }
 
