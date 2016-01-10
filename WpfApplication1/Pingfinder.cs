@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WpfApplication1
 {
-    public class Pingfinder
+    public class PingFinder
     {
         public string ExecuteCommand(string command)
         {
@@ -15,7 +15,7 @@ namespace WpfApplication1
             PingReply r;
             string s;
             s = command;
-
+           
 
 
             try

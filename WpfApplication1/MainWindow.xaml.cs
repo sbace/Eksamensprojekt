@@ -50,21 +50,23 @@ namespace WpfApplication1
             {
                 textBox.Text = ipc;
             }
-            
+
             //            textBox.Text = s;
-            
+
 
         }
 
         private void ping_Click(object sender, RoutedEventArgs e)
         {
+
+            //string skal i Pingfinder i stedet
             string s;
             s = ipa.Text;
 
-            var pfind = new Pingfinder();
+            var pfind = new PingFinder();
             string pfound = pfind.ExecuteCommand(s);
             textBox.Text = pfound;
-            
+
         }
 
         private void WanIp_Click(object sender, RoutedEventArgs e)
@@ -79,19 +81,40 @@ namespace WpfApplication1
                 result = client.DownloadString(url);
                 textBox.Text = "My WAN IP is " + result;
             }
-            catch (Exception ex) { textBox.Text="127.0.0.1"; }
+            catch (Exception ex) { textBox.Text = "127.0.0.1"; }
         }
 
         private void mac_Click(object sender, RoutedEventArgs e)
         {
-           
+
             var cmd = new CMDexe();
             string mac = cmd.ExecuteCommand("getmac");
             textBox.Text = mac;
 
 
         }
-    }
+
+        private void ipa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                string s;
+                s = ipa.Text;
+
+                var pfind = new PingFinder();
+                string pfound = pfind.ExecuteCommand(s);
+                textBox.Text = pfound;
+            }
+        }
+
+ //       private void ipa_TextChanged(object sender, TextChangedEventArgs e)
+ //       {
+//
+//        }
+
+  
 
     }
+
+}    
 
