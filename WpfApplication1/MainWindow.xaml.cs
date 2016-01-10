@@ -1,21 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Diagnostics;
-using System.Net.NetworkInformation;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Input;
 
 namespace WpfApplication1
 {
@@ -31,10 +18,8 @@ namespace WpfApplication1
 
         private void Ipconfig_Click(object sender, RoutedEventArgs e)
         {
-            textBox.Text = "";
             var cmd = new CMDexe();
             string ipc = cmd.ExecuteCommand("ipconfig");
-            //textBox.Text = mac;
 
             String input = ipc;
             Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
@@ -42,7 +27,7 @@ namespace WpfApplication1
 
             if (result.Count == 3)
             {
-                textBox.Text += "IP adresse is " + result[0] + "\n";
+                textBox.Text = "IP adresse is " + result[0] + "\n";
                 textBox.Text += "Subnet adresse is " + result[1] + "\n";
                 textBox.Text += "Gateway adresse is " + result[2] + "\n";
 
@@ -51,41 +36,33 @@ namespace WpfApplication1
             {
                 textBox.Text = ipc;
             }
-
-            //            textBox.Text = s;
-
-
         }
 
-        private void ping_Click(object sender, RoutedEventArgs e)
+        private void ExecutePing()
         {
-
-            //string skal i Pingfinder i stedet
             string s;
             s = ipa.Text;
 
             var pfind = new PingFinder();
             string pfound = pfind.ExecuteCommand(s);
             textBox.Text = pfound;
+        }
 
+        private void ping_Click(object sender, RoutedEventArgs e)
+        {
+            ExecutePing();
         }
 
         private void ipa_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Return)
+            if (e.Key == Key.Enter)
             {
-                string s;
-                s = ipa.Text;
-
-                var pfind = new PingFinder();
-                string pfound = pfind.ExecuteCommand(s);
-                textBox.Text = pfound;
+                ExecutePing();
             }
         }
 
         private void WanIp_Click(object sender, RoutedEventArgs e)
         {
-            //Virker fint
             String url = "http://bot.whatismyipaddress.com/";
             String result = null;
 
@@ -100,24 +77,10 @@ namespace WpfApplication1
 
         private void mac_Click(object sender, RoutedEventArgs e)
         {
-
             var cmd = new CMDexe();
             string mac = cmd.ExecuteCommand("getmac");
             textBox.Text = mac;
-
-
         }
-
-
-
- //       private void ipa_TextChanged(object sender, TextChangedEventArgs e)
- //       {
-//
-//        }
-
-  
-
     }
-
 }    
 

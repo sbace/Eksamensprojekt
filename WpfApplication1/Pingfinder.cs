@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WpfApplication1
 {
@@ -16,8 +12,6 @@ namespace WpfApplication1
             string s;
             s = command;
            
-
-
             try
             {
                 r = p.Send(s);
@@ -30,15 +24,11 @@ namespace WpfApplication1
                 {
                     return "No ping";
                 }
-
-
             }
             catch (Exception ex)
             {
                 return "That is not a valid address!!!";
             }
-
-
         }
     }
 }
