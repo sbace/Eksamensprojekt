@@ -15,7 +15,7 @@ namespace WpfApplication1
             psi.UseShellExecute = false;
 
             psi.RedirectStandardOutput = true;
-            psi.CreateNoWindow = false;
+            psi.CreateNoWindow = true;
 
             var proc = Process.Start(psi);
             string s = proc.StandardOutput.ReadToEnd();

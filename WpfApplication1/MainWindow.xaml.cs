@@ -31,6 +31,7 @@ namespace WpfApplication1
 
         private void Ipconfig_Click(object sender, RoutedEventArgs e)
         {
+            textBox.Text = "";
             var cmd = new CMDexe();
             string ipc = cmd.ExecuteCommand("ipconfig");
             //textBox.Text = mac;
@@ -69,6 +70,19 @@ namespace WpfApplication1
 
         }
 
+        private void ipa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                string s;
+                s = ipa.Text;
+
+                var pfind = new PingFinder();
+                string pfound = pfind.ExecuteCommand(s);
+                textBox.Text = pfound;
+            }
+        }
+
         private void WanIp_Click(object sender, RoutedEventArgs e)
         {
             //Virker fint
@@ -94,18 +108,7 @@ namespace WpfApplication1
 
         }
 
-        private void ipa_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                string s;
-                s = ipa.Text;
 
-                var pfind = new PingFinder();
-                string pfound = pfind.ExecuteCommand(s);
-                textBox.Text = pfound;
-            }
-        }
 
  //       private void ipa_TextChanged(object sender, TextChangedEventArgs e)
  //       {
